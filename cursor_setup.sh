@@ -7,7 +7,7 @@ readonly SCRIPT_ALIAS_NAME="cursor-setup"
 readonly DOWNLOAD_DIR="$HOME/.AppImage"
 readonly ICON_DIR="$HOME/.local/share/icons"
 readonly USER_DESKTOP_FILE="$HOME/Desktop/cursor.desktop"
-readonly DOWNLOAD_URL="https://downloader.cursor.sh/linux/appImage/x64"
+readonly DOWNLOAD_URL="https://downloads.cursor.com/production/53b99ce608cba35127ae3a050c1738a959750865/linux/x64/Cursor-1.0.0-x86_64.AppImage"
 readonly ICON_URL="https://mintlify.s3-us-west-1.amazonaws.com/cursor/images/logo/app-logo.svg"
 readonly VERSION_CHECK_TIMEOUT=5 # in seconds | if you have a slow connection, increase this value to 10, 15, or more
 readonly SPINNERS=("meter" "line" "dot" "minidot" "jump" "pulse" "points" "globe" "moon" "monkey" "hamburger")
@@ -176,7 +176,7 @@ fetch_remote_version() {
     return 1
   fi
   logg success "Latest version details retrieved successfully."
-  remote_name=$(echo "$headers" | grep -oE 'filename="[^"]+"' | sed 's/filename=//g; s/\"//g') || remote_name=""
+  remote_name=$(echo "$headers" | grep -oE 'filename="[^"]+"' | sed 's/filename=//g; s/\"//g') || remote_name="Cursor-1.0.0-x86_64.AppImage "
   remote_size=$(echo "$headers" | grep -oE 'Content-Length: [0-9]+' | sed 's/Content-Length: //') || remote_size="0"
   remote_version=$(extract_version "$remote_name")
   remote_md5=$(echo "$headers" | grep -oE 'ETag: "[^"]+"' | sed 's/ETag: //; s/"//g' || echo "unknown")
